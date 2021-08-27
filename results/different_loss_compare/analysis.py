@@ -16,11 +16,13 @@ sisnrs = []
 
 def get_info(csv_path, name, all_csvs):
     df = pd.read_csv(csv_path, encoding="utf_8_sig")
-    all_csvs[name] = df.describe().loc[["std", "mean"]].drop(
-        ['Unnamed: 0', "stft_snr"], axis=1)
+    temp_df = df.describe().loc[["std", "mean"]].drop(['Unnamed: 0', "stft_snr"], axis=1)
+    temp_df.time_sisnr_ = abs(temp_df.time_sisnr_)
+    temp_df["apc-snr"] = abs(temp_df["apc-snr"])
+    all_csvs[name] = temp_df
     pesqs.append(all_csvs[name]["pesq_wb"].loc["mean"])
     stois.append(all_csvs[name]["stoi_score"].loc["mean"])
-    sisnrs.append(abs(all_csvs[name]["time_sisnr_"].loc["mean"]))
+    sisnrs.append(all_csvs[name]["time_sisnr_"].loc["mean"])
 
 
 def sort_csv(all_csvs, model_flag):
@@ -28,15 +30,15 @@ def sort_csv(all_csvs, model_flag):
     for key in all_csvs.keys():
         mean_measure = (
                                (all_csvs[key]["pesq_wb"].loc["mean"] - np.mean(pesqs)) / np.std(pesqs) +
-                               (abs(all_csvs[key]["time_sisnr_"].loc["mean"] - np.mean(sisnrs))) / np.std(sisnrs) +
+                               (all_csvs[key]["time_sisnr_"].loc["mean"] - np.mean(sisnrs)) / np.std(sisnrs) +
                                (all_csvs[key]["stoi_score"].loc["mean"] - np.mean(stois)) / np.std(stois)
                        ) / 3
         all_csvs[key]["CI"] = mean_measure
         scores[key] = mean_measure
     scores_sort = sorted(scores.items(), key=lambda x: x[1], reverse=False)
 
-    indexes = None
-    scores_plot = {}
+    # indexes = None
+    # scores_plot = {}
     methods = []
     for key in scores_sort:
         print("--" * 15, key[0], "--" * 15)
@@ -68,7 +70,6 @@ if __name__ == '__main__':
     all_csvs = {}
     info_path = {}
     all_csv_name = []
-    number_flag = 150
     root = os.path.join("./csvs/", model_flag)
     for i in os.walk(root):
         all_csv_name = i[2]

@@ -1,6 +1,6 @@
 This repository is used to suspend the results of our paper "A Deep Learning Loss Function based on Auditory Power Compression for Speech Enhancement". 
 
-The source code will be open source if the article is received.
+The source code will be open if the article is received.
 
 ```text
 @misc{wang2021deep,
