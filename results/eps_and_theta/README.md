@@ -29,7 +29,7 @@ time_sisnr_    17.562867
 stoi_score      0.938318
 Name: mean, dtype: float64
 ```
-![](https://github.com/wangtianrui/APC-SNR/tree/master/results/eps_and_theta/pics/eps.png)
+![](https://github.com/wangtianrui/APC-SNR/blob/master/results/eps_and_theta/pics/eps.png)
 
 #### theta
 * (python36) F:\python programes\APC-SNR\results\eps_and_theta> python analysis.py theta
@@ -76,6 +76,6 @@ time_sisnr_    17.538733
 stoi_score      0.937562
 Name: mean, dtype: float64
 ```
-![](https://github.com/wangtianrui/APC-SNR/tree/master/results/eps_and_theta/pics/theta.png)
+![](https://github.com/wangtianrui/APC-SNR/blob/master/results/eps_and_theta/pics/theta.png)
 
 
