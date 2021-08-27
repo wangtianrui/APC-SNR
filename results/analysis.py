@@ -31,7 +31,7 @@ def sort_csv(all_csvs, model_flag):
                                (abs(all_csvs[key]["time_sisnr_"].loc["mean"] - np.mean(sisnrs))) / np.std(sisnrs) +
                                (all_csvs[key]["stoi_score"].loc["mean"] - np.mean(stois)) / np.std(stois)
                        ) / 3
-        all_csvs[key]["mean_measure"] = mean_measure
+        all_csvs[key]["CI"] = mean_measure
         scores[key] = mean_measure
     scores_sort = sorted(scores.items(), key=lambda x: x[1], reverse=False)
 
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     info_path = {}
     all_csv_name = []
     number_flag = 150
-    root = os.path.join("./results/", model_flag)
+    root = os.path.join("./csvs/", model_flag)
     for i in os.walk(root):
         all_csv_name = i[2]
         break
