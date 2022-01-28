@@ -24,13 +24,12 @@ if __name__ == '__main__':
                 xs.append(theta)
             df = pd.read_csv(os.path.join(eps_root, name))
             print(name)
-            df = df[["pesq_wb", "time_sisnr_", "stoi_score"]]
             df.time_sisnr_ = abs(df.time_sisnr_)
             print(df.describe().loc["mean"])
             pesq.append(float(df.describe().loc["mean"]["pesq_wb"]))
             sisnr.append(abs(float(df.describe().loc["mean"]["time_sisnr_"])))
             stoi.append(float(df.describe().loc["mean"]["stoi_score"]))
-            df.to_csv(os.path.join(eps_root, name))
+            df.to_csv(os.path.join(eps_root, name))  # change SI-SNR to positive number
         break
     print(pesq)
     print(sisnr)

@@ -1,6 +1,6 @@
-This repository is used to suspend the results of our paper "A Deep Learning Loss Function based on Auditory Power Compression for Speech Enhancement". 
+The official repo of "A Deep Learning Loss Function based on Auditory Power Compression for Speech Enhancement" 
 
-The source code will be open if the article is received.
+> This is a loss function for wide-band signals. Although the manuscript was rejected by ICASSP, the method is effective (The main problem appeared in the writing). To ensure the reproducibility of other papers (HGCN、HGCN+), we open-source it.
 
 ```text
 @misc{wang2021deep,

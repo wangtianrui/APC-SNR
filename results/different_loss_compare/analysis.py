@@ -17,8 +17,8 @@ sisnrs = []
 def get_info(csv_path, name, all_csvs):
     df = pd.read_csv(csv_path, encoding="utf_8_sig")
     temp_df = df.describe().loc[["std", "mean"]].drop(['Unnamed: 0', "stft_snr"], axis=1)
-    temp_df.time_sisnr_ = abs(temp_df.time_sisnr_)
-    temp_df["apc-snr"] = abs(temp_df["apc-snr"])
+    temp_df.time_sisnr_ = abs(temp_df.time_sisnr_)  # to positive number
+    temp_df["apc-snr"] = abs(temp_df["apc-snr"])  # to positive number
     all_csvs[name] = temp_df
     pesqs.append(all_csvs[name]["pesq_wb"].loc["mean"])
     stois.append(all_csvs[name]["stoi_score"].loc["mean"])
