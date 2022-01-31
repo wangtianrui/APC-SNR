@@ -29,6 +29,8 @@ def stft_snr(est, clean, eps=1e-8):
 
 
 class APC_SNR_multi_filter(torch.nn.Module):
+    # APC_SNR_multi_filter is better than APC_SNR with more GPU memory.
+    # criterion = APC_SNR_multi_filter(model_hop=128, model_winlen=512, mag_bins=256, theta=0.01, hops=[8, 16, 32, 64])
     def __init__(self, model_hop, model_winlen, theta, mag_bins, hops=()):
         super(APC_SNR_multi_filter, self).__init__()
         self.multi_hop = hops
